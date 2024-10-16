@@ -1,0 +1,55 @@
+﻿@model List<Contact>
+
+<div class="container">
+    <div class="mb-3">
+        <a class="btn btn-primary" asp-action="Create">Add</a>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Contact contact in Model)
+            {
+                <tr>
+                    <td>
+                        @contact.Id
+                    </td>
+                    <td>
+                        @contact.Name
+                    </td>
+                    <td>
+                        @contact.Email
+                    </td>
+                    <td>
+                        @contact.PhoneNumber
+                    </td>
+                    <td>
+                       <div class="row">
+                           <div class="col-5">
+                                <a class="btn btn-secondary" asp-action="Update" asp-route-id="@contact.Id">
+                                    Update
+                                </a>
+                               </div>
+                            <div class="col-5"> <form asp-action="Delete" method="post">
+                                <input type="hidden" name="Id" value="@contact.Id" />
+                                <button class="btn btn-primary btn-danger" type="submit">X</button>
+                            </form>
+                                </div>
+
+                           
+                       </div> 
+                      
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
